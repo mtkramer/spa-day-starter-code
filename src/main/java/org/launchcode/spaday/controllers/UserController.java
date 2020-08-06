@@ -20,19 +20,14 @@ public class UserController {
 
     @PostMapping
     public String processAddUserForm(Model model, String verify, @ModelAttribute @Valid User user, Errors errors) {
-        if(errors.hasErrors() || !user.getPassword().equals(verify)){
+        if (errors.hasErrors() || !user.getPassword().equals(verify)) {
             model.addAttribute("username", user.getUsername());
             model.addAttribute("email", user.getEmail());
             model.addAttribute("error", errors.getFieldError().getDefaultMessage());
             return "user/add";
         } else {
-           return "user/index";
+            return "user/index";
         }
     }
-
-    /*
-    Within the processAddUserForm handler, check for errors configured by the validation annotation
-    using errors.hasErrors(). If this returns true, return the user to the form.
-     */
 
 }
